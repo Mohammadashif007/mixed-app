@@ -26,6 +26,7 @@ const Header = () => {
                 </Link>
                 <Link to='/my_gym'>Gym</Link>
                 <Link to='/countries'>Countries</Link>
+                <Link to='/rechart'>Rechart</Link>
             </div>
             <div className='text-3xl md:hidden ' onClick={() => setOpen(!open)}>
                 <Link>

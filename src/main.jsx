@@ -10,6 +10,7 @@ import Login_page from './components/Login_page/Login_page'
 import My_gym from './components/My_gym/My_gym'
 import Countries from './components/Countries/Countries'
 import Show_foods from './components/Show_foods/Show_foods'
+import Rechart from './components/Rechart/Rechart'
 
 
 const router = createBrowserRouter([
@@ -36,12 +37,17 @@ const router = createBrowserRouter([
         element: <Login_page></Login_page>
       },
       {
+        path: '/rechart',
+        element: <Rechart></Rechart>
+      },
+      {
         path: '/my_gym',
         element: <My_gym></My_gym>
       },
       {
         path: '/countries',
-        element: <Countries></Countries>
+        element: <Countries></Countries>,
+        loader: () => fetch('https://restcountries.com/v3.1/all')
       }
     ]
   }
