@@ -6,17 +6,22 @@ import { useLoaderData } from "react-router-dom";
 
 const Foods = () => {
 
-    const foods = useLoaderData();
-    const [inputValue, setValue] = useState('')
-    // console.log(inputValue)
+    // const foods = useLoaderData();
+    const [inputValue, setValue] = useState([])
+    console.log(inputValue);
 
-    const inputField = (name) => {
+    const inputField =async () => {
         const inputField = document.getElementById('inputField');
-        const inputValue = inputField.value;
-        setValue(inputValue);
+        const searchValue = inputField.value;
+        // setValue(inputValue);
+        const url = await  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`)
+
+        const res = await url.json();
+       setValue(res.meals);
 
         inputField.innerText = '';
     }
+
 
     return (
         <div>
@@ -28,14 +33,18 @@ const Foods = () => {
                     placeholder="Search"
                     className="w-full border py-3 px-2"
                 />
-                <button className="border px-6" onClick={()=>inputField(inputValue)}>
+                <button className="border px-6" onClick={inputField}>
                     <FiSearch className="text-2xl" />
                 </button>
             </div>
             <div className="grid grid-cols-3 gap-5 mt-10">
-                {foods.meals.map((meal) => (
+                {/* {foods.meals.map((meal) => (
                     <Show_foods key={meal.idMeals} meal={meal}></Show_foods>
-                ))}
+                ))} */}
+
+                {
+                    inputValue.map(meal => <Show_foods key={meal.idMeals} meal={meal}></Show_foods>)
+                }
             </div>
         </div>
     );
