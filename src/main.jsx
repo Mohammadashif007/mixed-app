@@ -33,10 +33,6 @@ const router = createBrowserRouter([
         // loader: () => fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=egg')
       },
       {
-        path: '/login_page',
-        element: <Login_page></Login_page>
-      },
-      {
         path: '/rechart',
         element: <Rechart></Rechart>
       },
@@ -48,6 +44,10 @@ const router = createBrowserRouter([
         path: '/countries',
         element: <Countries></Countries>,
         loader: () => fetch('https://restcountries.com/v3.1/all')
+      },
+      {
+        path: '/login', 
+        element: <Login_page></Login_page>
       }
     ]
   }
